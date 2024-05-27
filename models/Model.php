@@ -14,7 +14,9 @@ class Model {
     protected PDO $db;
 
     public function __construct() {
-        $this->databaseInstance = new Database();
-        $this->db = $this->databaseInstance->connect();
+        if (WITH_DATABASE) {
+            $this->databaseInstance = new Database();
+            $this->db = $this->databaseInstance->connect();
+        }
     }
 }

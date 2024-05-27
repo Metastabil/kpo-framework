@@ -26,3 +26,23 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+
+if (!function_exists('router')) {
+    /**
+     * @param string $route
+     * @param mixed $callback
+     * @return bool
+     */
+    function router(string $route, mixed $callback) :bool {
+        $url_parts = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+        $requested_route = implode('/', $url_parts);
+        $route_regex = preg_replace('/:[^\/]+/', '([^\/]+)', $route);
+
+        if (preg_match("~^$route_regex$~", $requested_route, $matches)) {
+            call_user_func_array($callback, array_slice($matches, 1));
+            return true;
+        }
+
+        return false;
+    }
+}
