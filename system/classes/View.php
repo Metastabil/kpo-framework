@@ -13,7 +13,7 @@ class View {
      * @return $this
      */
     public function render(string $view, array $params = []): View {
-        $viewDirectory = dirname(__DIR__) . '/views';
+        $viewDirectory = dirname(__DIR__, 2) . '/views';
 
         if (is_file("$viewDirectory/$view.php")) {
             $viewPath = "$viewDirectory/$view.php";
