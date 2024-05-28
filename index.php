@@ -27,6 +27,9 @@ const WITH_DATABASE = false;
  | Autoload files
  |--------------------------------------------------------------------------
  */
+require_once __DIR__ . '/controllers/Controller.php';
+require_once __DIR__ . '/models/Model.php';
+
 foreach (glob(__DIR__ . '/system/helpers/*.php') as $file) {
     require_once $file;
 }
@@ -50,6 +53,13 @@ foreach (glob(__DIR__. '/models/*.php') as $file) {
         require_once $file;
     }
 }
+
+/*
+ |--------------------------------------------------------------------------
+ | Language constant
+ |--------------------------------------------------------------------------
+ */
+define('LANG', get_language());
 
 /*
  |--------------------------------------------------------------------------
