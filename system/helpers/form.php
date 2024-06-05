@@ -7,10 +7,10 @@
 if (!function_exists('form_input')) {
     /**
      * @param array $params
-     * @param string $value
+     * @param string|null $value
      * @return string
      */
-    function form_input(array $params, string $value = '') :string {
+    function form_input(array $params, string|null $value = '') :string {
         $html = "<input ";
 
         foreach ($params as $key => $val) {
