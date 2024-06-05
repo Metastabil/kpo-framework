@@ -18,7 +18,7 @@ if (!function_exists('array_to_json')) {
                 die($exception->getMessage());
             }
 
-            redirect('404');
+            redirect('error');
         }
     }
 }
