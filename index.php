@@ -69,3 +69,9 @@ define('LANG', get_language());
 $routeFound = router('', static function() {
     echo 'Willkommen zum KPO Framework!';
 });
+
+if (!$routeFound) {
+    header("HTTP/1.0 404 Not Found");
+    echo "404 Not Found";
+    exit();
+}
