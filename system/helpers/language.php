@@ -20,10 +20,11 @@ if (!function_exists('get_language')) {
             redirect('404');
         }
 
+        require_once $filepath;
+
         /**
          * @var array $lang
          */
-
         return $lang;
     }
 }
