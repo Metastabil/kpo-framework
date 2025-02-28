@@ -45,11 +45,19 @@ if (!function_exists('get_input')) {
     /**
      * @param string $name
      * @param string $method
-     * @return string
+     * @return string|array
      */
-    function get_input(string $name, string $method = 'POST') :string {
+    function get_input(string $name, string $method = 'POST') :string|array {
         if ($method === 'POST') {
+            if (is_array($_POST[$name])) {
+                return $_POST[$name];
+            }
+
             return (string)$_POST[$name];
+        }
+
+        if (is_array($_GET[$name])) {
+            return $_GET[$name];
         }
 
         return (string)$_GET[$name];
