@@ -66,11 +66,23 @@ define('LANG', get_language());
  | Routing
  |--------------------------------------------------------------------------
  */
-$routeFound = router('', static function() {
-    echo 'Willkommen zum KPO Framework!';
-});
+$routes = require __DIR__ . '/config/routes.php';
 
-if (!$routeFound) {
+foreach ($routes as $key => $value) {
+    $controller = 'KPO\\Controllers\\' . $value[0];
+    $method     = $value[1];
+
+    $route = router($key, static function ($param = null) use ($controller, $method) {
+        $class = new $controller;
+        if ($param !== null) {
+            $class->$method($param);
+        } else {
+            $class->$method();
+        }
+    });
+}
+
+if (!$route) {
     header("HTTP/1.0 404 Not Found");
     echo "404 Not Found";
     exit();
